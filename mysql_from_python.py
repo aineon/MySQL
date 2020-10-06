@@ -38,11 +38,7 @@ finally:
 
 try:
     with connection.cursor() as cursor:
-        rows = [(24, 'Bob'),
-                 (24, 'Jim'),
-                 (25, 'Fred')]
-        cursor.executemany("UPDATE Friends SET age = %s WHERE name = %s;",
-                       rows)
-        connection.commit()
+        rows = cursor.execute("DELETE FROM Friends WHERE name = 'Bob';")
+    connection.commit()
 finally:
     connection.close()
