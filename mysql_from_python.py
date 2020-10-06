@@ -38,7 +38,8 @@ finally:
 
 try:
     with connection.cursor() as cursor:
-        cursor.execute("UPDATE Friends SET age = 22 WHERE name = 'Bob';")
+        cursor.execute("UPDATE Friends SET age = %s WHERE name = %s;",
+                       (23, 'Bob'))
         connection.commit()
 finally:
     connection.close()
